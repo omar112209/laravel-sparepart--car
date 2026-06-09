@@ -1,0 +1,6 @@
+import internal.GlobalVariable
+
+GlobalVariable.APP_URL = "http://localhost:8000"
+GlobalVariable.APP_NAME = "Tokosparepart Mobil"
+GlobalVariable.ADMIN_EMAIL = "admin@example.com"
+GlobalVariable.ADMIN_PASSWORD = "password"
