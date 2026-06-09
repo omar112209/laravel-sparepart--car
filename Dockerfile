@@ -7,18 +7,7 @@ COPY --chown=www-data:www-data . .
 RUN chmod -R 775 storage bootstrap/cache && \
     composer install --no-dev --optimize-autoloader
 
-# Startup wrapper: runs Laravel setup, then hands off to s6-overlay init
-RUN echo '#!/bin/bash
-set -e
-cd /var/www/html
-
-php artisan migrate --force 2>&1 || true
-php artisan config:cache 2>&1 || true
-php artisan route:cache 2>&1 || true
-php artisan view:cache 2>&1 || true
-
-exec /init' > /usr/local/bin/docker-start.sh && \
-    chmod +x /usr/local/bin/docker-start.sh
+COPY --chmod=755 docker/docker-start.sh /usr/local/bin/docker-start.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-start.sh"]
 
