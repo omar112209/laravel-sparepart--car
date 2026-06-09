@@ -7,9 +7,8 @@ COPY --chown=www-data:www-data . .
 RUN chmod -R 775 storage bootstrap/cache && \
     composer install --no-dev --optimize-autoloader
 
-COPY --chmod=755 docker/docker-start.sh /usr/local/bin/docker-start.sh
-
-ENTRYPOINT ["/usr/local/bin/docker-start.sh"]
+# Laravel init — jalan via s6-overlay SEBELUM nginx/php-fpm start
+COPY --chmod=755 docker/docker-start.sh /etc/cont-init.d/00-laravel-init
 
 EXPOSE 8080
 
