@@ -1,19 +1,28 @@
 FROM serversideup/php:8.2-fpm-nginx
 
-# Set working directory di dalam container
 WORKDIR /var/www/html
 
-# Menyalin seluruh file proyek ke dalam container
 COPY --chown=www-data:www-data . .
 
-# Mengatur izin akses (permission) folder agar Laravel tidak error 500
-RUN chmod -R 775 storage bootstrap/cache
+RUN chmod -R 775 storage bootstrap/cache && \
+    composer install --no-dev --optimize-autoloader
 
-# Menjalankan composer install untuk mengunduh library PHP
-RUN composer install --no-dev --optimize-autoloader
+# Startup wrapper: runs Laravel setup, then hands off to s6-overlay init
+RUN echo '#!/bin/bash
+set -e
+cd /var/www/html
 
-# Expose port standar web
+php artisan migrate --force 2>&1 || true
+php artisan config:cache 2>&1 || true
+php artisan route:cache 2>&1 || true
+php artisan view:cache 2>&1 || true
+
+exec /init' > /usr/local/bin/docker-start.sh && \
+    chmod +x /usr/local/bin/docker-start.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-start.sh"]
+
 EXPOSE 8080
 
-# Jalankan migrasi database dan optimasi cache Laravel secara otomatis saat aplikasi dinyalakan
-CMD php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache && exec /entrypoint.sh
+HEALTHCHECK --interval=30s --timeout=3s --start-period=120s --retries=3 \
+    CMD curl -f http://localhost:8080/ || exit 1
