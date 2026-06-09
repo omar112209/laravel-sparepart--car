@@ -36,8 +36,7 @@
 
                                             </a>
 
-                                            <form method="POST" action="#" style="display: inline-
-block;">
+                                            <form method="POST" action="{{ route('backend.customer.destroy', $row->id) }}" style="display: inline-block;">
 
                                                 @method('delete')
                                                 @csrf
