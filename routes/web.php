@@ -16,9 +16,10 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use Illuminate\Support\Facades\Http;
 
 // ================= ROOT =================
-Route::get('/', function () {
-    return redirect()->route('beranda');
-});
+Route::get('/', [BerandaController::class, 'redirectToBeranda']);
+
+// ================= HEALTHCHECK =================
+Route::get('/healthcheck', [BerandaController::class, 'healthcheck']);
 
 // ================= BACKEND LOGIN =================
 Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login');

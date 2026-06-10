@@ -44,7 +44,7 @@ class ApiTest extends TestCase
             ], 200),
         ]);
 
-        $response = $this->get('/districts?city_id=1');
+        $response = $this->get('/districts/1');
         $response->assertStatus(200);
         $response->assertJson(['success' => true]);
     }

@@ -59,6 +59,21 @@ class BerandaController extends Controller
             'recentOrders' => $recentOrders,
         ]);
     }
+    public function redirectToBeranda()
+    {
+        return redirect()->route('beranda');
+    }
+
+    public function healthcheck()
+    {
+        try {
+            \DB::connection()->getPdo();
+            return response('OK', 200);
+        } catch (\Exception $e) {
+            return response('DB Error: ' . $e->getMessage(), 500);
+        }
+    }
+
     public function index()
     {
         $produk = Produk::where('status', 1)->orderBy('updated_at', 'desc')->paginate(6);

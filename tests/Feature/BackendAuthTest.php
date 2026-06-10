@@ -37,7 +37,7 @@ class BackendAuthTest extends TestCase
         ]);
 
         $response->assertRedirect(route('backend.beranda'));
-        $this->assertAuthenticated();
+        $this->assertAuthenticated('admin');
     }
 
     public function test_admin_cannot_login_with_invalid_password(): void
