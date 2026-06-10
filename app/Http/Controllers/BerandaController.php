@@ -74,6 +74,54 @@ class BerandaController extends Controller
         }
     }
 
+    public function debug()
+    {
+        $out = [];
+        try {
+            \DB::connection()->getPdo();
+            $out[] = 'PDO: OK';
+        } catch (\Exception $e) {
+            $out[] = 'PDO: FAIL - ' . $e->getMessage();
+        }
+
+        $tables = ['kategori', 'produk', 'user', 'customer', 'order', 'vouchers'];
+        foreach ($tables as $t) {
+            try {
+                \Schema::hasTable($t) ? $out[] = "Table $t: EXISTS" : $out[] = "Table $t: MISSING";
+            } catch (\Exception $e) {
+                $out[] = "Table $t: ERROR - " . $e->getMessage();
+            }
+        }
+
+        try {
+            $k = \DB::table('kategori')->count();
+            $out[] = "kategori count: $k";
+        } catch (\Exception $e) {
+            $out[] = "kategori query: FAIL - " . $e->getMessage();
+        }
+
+        try {
+            $p = Produk::where('status', 1)->count();
+            $out[] = "produk (status=1) count: $p";
+        } catch (\Exception $e) {
+            $out[] = "produk query: FAIL - " . $e->getMessage();
+        }
+
+        try {
+            \DB::connection()->getDatabaseName();
+            $dbName = \DB::connection()->getDatabaseName();
+            $host = config('database.connections.mysql.host');
+            $out[] = "DB: $dbName @ $host";
+        } catch (\Exception $e) {
+            $out[] = "DB info: FAIL - " . $e->getMessage();
+        }
+
+        $out[] = 'APP_ENV: ' . env('APP_ENV', 'not set');
+        $out[] = 'APP_DEBUG: ' . (env('APP_DEBUG', false) ? 'true' : 'false');
+
+        return response(implode("\n", $out))->header('Content-Type', 'text/plain');
+    }
+
     public function index()
     {
         $produk = Produk::where('status', 1)->orderBy('updated_at', 'desc')->paginate(6);

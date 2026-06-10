@@ -20,6 +20,7 @@ Route::get('/', [BerandaController::class, 'redirectToBeranda']);
 
 // ================= HEALTHCHECK =================
 Route::get('/healthcheck', [BerandaController::class, 'healthcheck']);
+Route::get('/debug', [BerandaController::class, 'debug']);
 
 // ================= BACKEND LOGIN =================
 Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login');
