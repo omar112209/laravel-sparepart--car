@@ -4,6 +4,7 @@ WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data . .
 
+USER root
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libpng-dev libjpeg-dev libfreetype6-dev && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
