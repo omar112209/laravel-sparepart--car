@@ -4,7 +4,8 @@ WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data . .
 
-RUN chmod -R 775 storage bootstrap/cache && \
+RUN install-php-extensions gd && \
+    chmod -R 775 storage bootstrap/cache && \
     composer install --no-dev --optimize-autoloader
 
 # Laravel init — jalan via s6-overlay SEBELUM nginx/php-fpm start

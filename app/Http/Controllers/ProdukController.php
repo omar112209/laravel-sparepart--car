@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Produk;
 use App\Models\Kategori;
 use App\Models\FotoProduk;
@@ -57,7 +58,7 @@ class ProdukController extends Controller
 
             'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ]);
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['user_id'] = Auth::guard('admin')->id();
         $validatedData['status'] = 0;
         if ($request->file('foto')) {
             $file = $request->file('foto');
@@ -132,8 +133,8 @@ class ProdukController extends Controller
 
             'foto.max' => 'Ukuran file gambar Maksimal adalah 1024 KB.'
         ];
-        $validatedData['user_id'] = auth()->id();
         $validatedData = $request->validate($rules, $messages);
+        $validatedData['user_id'] = Auth::guard('admin')->id();
         if ($request->file('foto')) {
             if ($produk->foto) {
                 $oldImagePath = public_path('storage/img-produk/') . $produk->foto;
