@@ -4,7 +4,11 @@ WORKDIR /var/www/html
 
 COPY --chown=www-data:www-data . .
 
-RUN install-php-extensions gd && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libpng-dev libjpeg-dev libfreetype6-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
     chmod -R 775 storage bootstrap/cache && \
     composer install --no-dev --optimize-autoloader
 

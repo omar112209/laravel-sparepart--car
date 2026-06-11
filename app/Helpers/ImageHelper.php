@@ -17,7 +17,8 @@ class ImageHelper
         }
 
         if (!extension_loaded('gd')) {
-            $file->move($destinationPath, $fileName);
+            $content = file_get_contents($file->getRealPath());
+            file_put_contents($destinationPath . '/' . $fileName, $content);
             return $fileName;
         }
 
