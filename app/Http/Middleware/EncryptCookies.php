@@ -12,6 +12,7 @@ class EncryptCookies extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'laravel_session',
+        'maztechgarage_session',
     ];
 }
