@@ -13,7 +13,7 @@ class RajaOngkirController extends Controller
     {
         $data = Cache::remember('provinces', 60 * 60 * 24, function () {
             $response = Http::withHeaders([
-                'key' => env('RAJAONGKIR_API_KEY')
+                'key' => config('services.rajaongkir.api_key')
             ])->get('https://rajaongkir.komerce.id/api/v1/destination/province');
             return $response->json();
         });
@@ -28,7 +28,7 @@ class RajaOngkirController extends Controller
 
         $data = Cache::remember('cities_' . $provinceId, 60 * 60 * 24, function () use ($provinceId) {
             $response = Http::withHeaders([
-                'key' => env('RAJAONGKIR_API_KEY')
+                'key' => config('services.rajaongkir.api_key')
             ])->get('https://rajaongkir.komerce.id/api/v1/destination/city/' . $provinceId);
             return $response->json();
         });
@@ -42,7 +42,7 @@ class RajaOngkirController extends Controller
         Cache::forget('districts_' . $cityId);
         $data = Cache::remember('districts_' . $cityId, 60 * 60 * 24, function () use ($cityId) {
             $response = Http::withHeaders([
-                'key' => env('RAJAONGKIR_API_KEY')
+                'key' => config('services.rajaongkir.api_key')
             ])->get('https://rajaongkir.komerce.id/api/v1/destination/district/' . $cityId);
             return $response->json();
         });
@@ -56,7 +56,7 @@ class RajaOngkirController extends Controller
         $response = Http::asForm() // ← WAJIB asForm() untuk Komerce
             ->withHeaders([
                 'Accept' => 'application/json',
-                'key'    => env('RAJAONGKIR_API_KEY'),
+                'key'    => config('services.rajaongkir.api_key'),
             ])
             ->post('https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', [
                 'origin'      => $request->input('origin'),
