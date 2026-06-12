@@ -130,6 +130,13 @@ class VoucherController extends Controller
         }
 
         $customer = Customer::where('user_id', Auth::id())->first();
+        if (!$customer) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data customer tidak ditemukan.',
+            ]);
+        }
+
         $order = Order::where('customer_id', $customer->id)
             ->where('status', 'unpaid')
             ->first();
@@ -168,6 +175,13 @@ class VoucherController extends Controller
             })
             ->exists();
 
+        if ($alreadyUsed) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Voucher sudah pernah digunakan.',
+            ]);
+        }
+
         // Hitung diskon
         $diskon = $voucher->calculateDiscount($subtotal);
 
@@ -195,13 +209,19 @@ class VoucherController extends Controller
     {
         session()->forget('voucher_applied');
 
-        $customer = Customer::where('user_id', Auth::id())->first();
-        $order = Order::where('customer_id', $customer->id)
-            ->where('status', 'unpaid')
-            ->first();
+        $subtotal = 0;
+        $ongkir = 0;
 
-        $subtotal = $order ? $order->total_harga : 0;
-        $ongkir = $order ? (int) $order->biaya_ongkir : 0;
+        $customer = Customer::where('user_id', Auth::id())->first();
+        if ($customer) {
+            $order = Order::where('customer_id', $customer->id)
+                ->where('status', 'unpaid')
+                ->first();
+            if ($order) {
+                $subtotal = $order->total_harga;
+                $ongkir = (int) $order->biaya_ongkir;
+            }
+        }
 
         return response()->json([
             'success' => true,
