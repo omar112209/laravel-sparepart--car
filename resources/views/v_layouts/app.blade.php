@@ -396,8 +396,8 @@ img{max-width:100%;height:auto}
                 <div class="promo-card">
                     <div class="promo-inner">
                         <span class="promo-eyebrow">// PROMO SPESIAL</span>
-                        <div class="promo-title">DISKON<br><span>15%</span></div>
-                        <p class="promo-text">Untuk pembelian pertama<br>dengan kode: <strong>MAZDA15</strong></p>
+                        <div class="promo-title">DISKON<br><span>20%</span></div>
+                        <p class="promo-text">Untuk pembelian pertama<br>dengan kode: <strong>MAZDA20</strong></p>
                         <a href="{{ route('produk.all') }}" class="btn-primary btn-block">Klaim Sekarang</a>
                     </div>
                 </div>
