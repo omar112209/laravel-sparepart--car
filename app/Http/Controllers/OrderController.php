@@ -298,7 +298,7 @@ class OrderController extends Controller
 
         if ($orderId) {
             $realOrderId = explode('-', $orderId)[0];
-            $order = Order::find($realOrderId);
+            $order = Order::where('customer_id', $customer->id)->find($realOrderId);
         } else {
             $order = Order::where('customer_id', $customer->id)
                 ->where('status', 'unpaid')

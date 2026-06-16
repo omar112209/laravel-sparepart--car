@@ -109,14 +109,18 @@ class CustomerController extends Controller
                 // Login pengguna baru
                 Auth::guard('web')->login($user);
             } else {
-                // Jika email sudah terdaftar, langsung login
+                // Jika email sudah terdaftar, update google_id & token lalu login
+                $registeredUser->customer->update([
+                    'google_id' => $socialUser->id,
+                    'google_token' => $socialUser->token,
+                ]);
                 Auth::guard('web')->login($registeredUser);
             }
             // Redirect ke halaman utama
             return redirect()->intended('beranda');
         } catch (\Exception $e) {
             // Redirect ke halaman utama jika terjadi kesalahan
-            return $e->getMessage();
+            return redirect()->route('login')->with('error', 'Login dengan Google gagal: ' . $e->getMessage());
         }
     }
     public function logout(Request $request)
@@ -148,6 +152,10 @@ class CustomerController extends Controller
     }
     public function updateAkun(Request $request, $id)
     {
+        $loggedInCustomerId = Auth::guard('web')->user()->id;
+        if ($id != $loggedInCustomerId) {
+            return redirect()->route('customer.akun', ['id' => $loggedInCustomerId])->with('msgError', 'Anda tidak berhak mengakses akun ini.');
+        }
         $customer = Customer::where('user_id', $id)->firstOrFail();
         $rules = [
             'nama' => 'required|max:255',

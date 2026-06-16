@@ -24,7 +24,7 @@ Route::get('/debug', [BerandaController::class, 'debug']);
 
 // ================= BACKEND LOGIN =================
 Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login');
-Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->middleware('throttle:5,1');
+Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->middleware('throttle:5,30');
 Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
 
 // Backend Password Reset
