@@ -209,11 +209,13 @@ class OrderController extends Controller
 
         $biaya_ongkir = (int) $order->biaya_ongkir;
 
-        // Apply voucher discount if session exists
-        $voucherApplied = session('voucher_applied');
-        $diskon = 0;
-        if ($voucherApplied) {
-            $diskon = $voucherApplied['diskon'];
+        // Apply voucher discount (from order or session fallback)
+        $diskon = (int) $order->voucher_discount;
+        if (!$diskon) {
+            $voucherApplied = session('voucher_applied');
+            if ($voucherApplied) {
+                $diskon = $voucherApplied['diskon'];
+            }
         }
 
         $totalBayar = ($totalHarga + $biaya_ongkir) - $diskon;
@@ -332,21 +334,36 @@ class OrderController extends Controller
             }
         }
 
-        // Apply voucher if in session (handles race condition where server callback
-        // runs first without session, then browser complete() catches up)
-        $voucherApplied = session('voucher_applied');
-        if ($voucherApplied && !$order->voucher_code) {
-            $order->update([
-                'voucher_code' => $voucherApplied['kode'],
-                'voucher_discount' => $voucherApplied['diskon'],
-            ]);
-            \App\Models\VoucherUsage::create([
-                'voucher_id' => $voucherApplied['voucher_id'],
-                'order_id' => $order->id,
-                'user_id' => Auth::id(),
-                'diskon' => $voucherApplied['diskon'],
-            ]);
-            \App\Models\Voucher::where('id', $voucherApplied['voucher_id'])->increment('dipakai');
+        // Persist voucher usage (from order's saved fields or session fallback)
+        $voucherCode = $order->voucher_code;
+        $voucherDiscount = (int) $order->voucher_discount;
+
+        if (!$voucherCode) {
+            $voucherApplied = session('voucher_applied');
+            if ($voucherApplied) {
+                $voucherCode = $voucherApplied['kode'];
+                $voucherDiscount = (int) $voucherApplied['diskon'];
+                $order->update([
+                    'voucher_code' => $voucherCode,
+                    'voucher_discount' => $voucherDiscount,
+                ]);
+            }
+        }
+
+        if ($voucherCode && $voucherDiscount > 0) {
+            $alreadyRecorded = \App\Models\VoucherUsage::where('order_id', $order->id)->exists();
+            if (!$alreadyRecorded) {
+                $voucher = \App\Models\Voucher::where('kode', $voucherCode)->first();
+                if ($voucher) {
+                    \App\Models\VoucherUsage::create([
+                        'voucher_id' => $voucher->id,
+                        'order_id' => $order->id,
+                        'user_id' => Auth::id(),
+                        'diskon' => $voucherDiscount,
+                    ]);
+                    $voucher->increment('dipakai');
+                }
+            }
             session()->forget('voucher_applied');
         }
 
@@ -390,21 +407,23 @@ class OrderController extends Controller
                         }
                         $order->update(['total_harga' => $recalculatedTotal]);
 
-                        // Apply voucher if session exists (untuk callback)
-                        $voucherApplied = session('voucher_applied');
-                        if ($voucherApplied && !$order->voucher_code) {
-                            $order->update([
-                                'voucher_code' => $voucherApplied['kode'],
-                                'voucher_discount' => $voucherApplied['diskon'],
-                            ]);
-                            \App\Models\VoucherUsage::create([
-                                'voucher_id' => $voucherApplied['voucher_id'],
-                                'order_id' => $order->id,
-                                'user_id' => $order->customer->user_id,
-                                'diskon' => $voucherApplied['diskon'],
-                            ]);
-                            \App\Models\Voucher::where('id', $voucherApplied['voucher_id'])->increment('dipakai');
-                            session()->forget('voucher_applied');
+                        // Persist voucher usage from order's saved fields
+                        $voucherCode = $order->voucher_code;
+                        $voucherDiscount = (int) $order->voucher_discount;
+                        if ($voucherCode && $voucherDiscount > 0) {
+                            $alreadyRecorded = \App\Models\VoucherUsage::where('order_id', $order->id)->exists();
+                            if (!$alreadyRecorded) {
+                                $voucher = \App\Models\Voucher::where('kode', $voucherCode)->first();
+                                if ($voucher) {
+                                    \App\Models\VoucherUsage::create([
+                                        'voucher_id' => $voucher->id,
+                                        'order_id' => $order->id,
+                                        'user_id' => $order->customer->user_id,
+                                        'diskon' => $voucherDiscount,
+                                    ]);
+                                    $voucher->increment('dipakai');
+                                }
+                            }
                         }
                     }
                     $order->update(['status' => 'paid']);

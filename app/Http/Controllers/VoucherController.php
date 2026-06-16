@@ -185,7 +185,11 @@ class VoucherController extends Controller
         // Hitung diskon
         $diskon = $voucher->calculateDiscount($subtotal);
 
-        // Simpan ke session untuk ditampilkan di halaman checkout
+        // Simpan ke order dan session
+        $order->update([
+            'voucher_code' => $voucher->kode,
+            'voucher_discount' => $diskon,
+        ]);
         session([
             'voucher_applied' => [
                 'kode' => $voucher->kode,
@@ -218,6 +222,10 @@ class VoucherController extends Controller
                 ->where('status', 'unpaid')
                 ->first();
             if ($order) {
+                $order->update([
+                    'voucher_code' => null,
+                    'voucher_discount' => 0,
+                ]);
                 $subtotal = $order->total_harga;
                 $ongkir = (int) $order->biaya_ongkir;
             }
