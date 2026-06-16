@@ -43,6 +43,7 @@
                                     <th>Ongkir</th>
                                     <th>Kurir</th>
                                     <th>Status</th>
+                                    <th>Pembayaran</th>
                                     <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -65,6 +66,15 @@
                                                 <span class="badge badge-secondary">{{ $row->status }}</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if ($row->status == 'unpaid')
+                                                <span class="badge badge-danger">Belum Dibayar</span>
+                                            @elseif ($row->status == 'cancel')
+                                                <span class="badge badge-secondary">Dibatalkan</span>
+                                            @else
+                                                <span class="badge badge-success">Lunas</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $row->created_at->format('d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('pesanan.detail', $row->id) }}" class="btn btn-sm btn-info">
@@ -78,7 +88,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">Tidak ada data pesanan.</td>
+                                        <td colspan="10" class="text-center">Tidak ada data pesanan.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

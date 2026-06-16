@@ -67,6 +67,18 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td><strong>Pembayaran</strong></td>
+                                        <td>
+                                            @if ($order->status == 'unpaid')
+                                                <span class="badge badge-danger">Belum Dibayar</span>
+                                            @elseif ($order->status == 'cancel')
+                                                <span class="badge badge-secondary">Dibatalkan</span>
+                                            @else
+                                                <span class="badge badge-success">Lunas</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td><strong>Tanggal</strong></td>
                                         <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
                                     </tr>

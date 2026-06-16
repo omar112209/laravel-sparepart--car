@@ -38,6 +38,7 @@
                                     <th>Grand Total</th>
                                     <th>Kurir</th>
                                     <th>No Resi</th>
+                                    <th>Pembayaran</th>
                                     <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -54,6 +55,7 @@
                                         </td>
                                         <td>{{ strtoupper($row->kurir ?? '-') }} - {{ $row->layanan_ongkir ?? '-' }}</td>
                                         <td>{{ $row->noresi ?? '-' }}</td>
+                                        <td><span class="badge badge-success">Lunas</span></td>
                                         <td>{{ $row->created_at->format('d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('pesanan.detail', $row->id) }}" class="btn btn-sm btn-info">

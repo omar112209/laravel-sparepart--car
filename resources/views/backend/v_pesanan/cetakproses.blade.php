@@ -233,6 +233,7 @@
                 <th>Grand Total</th>
                 <th>Kurir</th>
                 <th>Status</th>
+                <th>Pembayaran</th>
                 <th>Tanggal</th>
             </tr>
         </thead>
@@ -253,11 +254,18 @@
                     </td>
                     <td class="text-center">{{ strtoupper($row->kurir ?? '-') }}</td>
                     <td class="text-center">{{ $row->status }}</td>
+                    <td class="text-center">
+                        @if ($row->status == 'unpaid')
+                            <span style="color:#C8102E;font-weight:bold;">Belum Dibayar</span>
+                        @else
+                            <span style="color:#28a745;font-weight:bold;">Lunas</span>
+                        @endif
+                    </td>
                     <td class="text-center">{{ $row->created_at->format('d/m/Y') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10" class="text-center">Tidak ada data pesanan proses.</td>
+                    <td colspan="11" class="text-center">Tidak ada data pesanan proses.</td>
                 </tr>
             @endforelse
         </tbody>
