@@ -143,6 +143,12 @@ class CustomerController extends Controller
             'index' => $customer
         ]);
     }
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
+        return redirect()->route('backend.customer.index')->with('success', 'Customer berhasil dihapus.');
+    }
     public function akun($id)
     {
         $loggedInCustomerId = Auth::guard('web')->user()->id;
