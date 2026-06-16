@@ -81,13 +81,17 @@ class CustomerController extends Controller
     // Redirect ke Google
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+            ->redirectUrl(route('auth.callback'))
+            ->redirect();
     }
     // Callback dari Google
     public function callback()
     {
         try {
-            $socialUser = Socialite::driver('google')->user();
+            $socialUser = Socialite::driver('google')
+                ->redirectUrl(route('auth.callback'))
+                ->user();
             // Cek apakah email sudah terdaftar
             $registeredUser = User::where('email', $socialUser->email)->first();
             if (!$registeredUser) {
