@@ -143,6 +143,42 @@ class CustomerController extends Controller
             'index' => $customer
         ]);
     }
+    public function show($id)
+    {
+        $customer = Customer::with('user')->findOrFail($id);
+        return view('backend.v_customer.show', [
+            'judul' => 'Detail Customer',
+            'show' => $customer
+        ]);
+    }
+    public function edit($id)
+    {
+        $customer = Customer::with('user')->findOrFail($id);
+        return view('backend.v_customer.edit', [
+            'judul' => 'Ubah Customer',
+            'edit' => $customer
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $customer = Customer::with('user')->findOrFail($id);
+        $rules = [
+            'nama' => 'required|max:255',
+            'hp' => 'required|min:10|max:13',
+            'status' => 'required',
+        ];
+        if ($request->email != $customer->user->email) {
+            $rules['email'] = 'required|max:255|email|unique:user';
+        }
+        $validatedData = $request->validate($rules);
+        $customer->user->update([
+            'nama' => $validatedData['nama'],
+            'email' => $validatedData['email'] ?? $customer->user->email,
+            'hp' => $validatedData['hp'],
+            'status' => $validatedData['status'],
+        ]);
+        return redirect()->route('backend.customer.index')->with('success', 'Customer berhasil diperbaharui.');
+    }
     public function destroy($id)
     {
         $customer = Customer::findOrFail($id);
