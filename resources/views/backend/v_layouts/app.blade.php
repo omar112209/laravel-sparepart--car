@@ -37,18 +37,18 @@
        CSS TOKENS
     ════════════════════════════════════════ */
         :root {
-            --c-bg: #0F1923;
-            --c-surface: #162030;
-            --c-surface2: #1C2C40;
-            --c-border: rgba(255, 255, 255, .07);
-            --c-red: #D92B2B;
-            --c-red-dk: #A81F1F;
-            --c-orange: #F07C1C;
+            --c-bg: #100808;
+            --c-surface: #1C0E0E;
+            --c-surface2: #2A1616;
+            --c-border: rgba(255, 255, 255, .08);
+            --c-red: #C8102E;
+            --c-red-dk: #9A0C23;
+            --c-orange: #D97706;
             --c-yellow: #F5C518;
             --c-green: #27AE60;
             --c-blue: #2E86DE;
-            --c-text: #D8E6F3;
-            --c-muted: #5A7490;
+            --c-text: #F0E8E8;
+            --c-muted: #A07070;
             --c-white: #FFFFFF;
             --font-d: 'Barlow Condensed', sans-serif;
             --font-b: 'Outfit', sans-serif;
@@ -58,13 +58,13 @@
         }
 
         [data-theme="light"] {
-            --c-bg: #F4F6F9;
+            --c-bg: #FDF5F5;
             --c-surface: #FFFFFF;
-            --c-surface2: #F0F2F5;
+            --c-surface2: #FFF0F0;
             --c-border: rgba(0, 0, 0, .1);
-            --c-text: #1E293B;
-            --c-muted: #64748B;
-            --c-white: #0F172A;
+            --c-text: #2D1B1B;
+            --c-muted: #9A7A7A;
+            --c-white: #1A0808;
         }
 
         *,
@@ -189,7 +189,7 @@
         }
 
         .user-dd .dropdown-item:hover {
-            background: rgba(217, 43, 43, .15) !important;
+            background: rgba(200, 16, 46, .15) !important;
             color: var(--c-white) !important;
         }
 
@@ -256,7 +256,7 @@
 
         .sidebar-link:hover,
         .sidebar-item:hover>.sidebar-link {
-            background: rgba(217, 43, 43, .1) !important;
+            background: rgba(200, 16, 46, .1) !important;
             color: var(--c-white) !important;
         }
 
@@ -265,7 +265,7 @@
         }
 
         .sidebar-item.selected>.sidebar-link {
-            background: rgba(217, 43, 43, .15) !important;
+            background: rgba(200, 16, 46, .15) !important;
             color: var(--c-white) !important;
             border-right-color: var(--c-red) !important;
         }
@@ -277,7 +277,7 @@
         /* Submenu */
         .first-level {
             background: rgba(0, 0, 0, .18) !important;
-            border-left: 2px solid rgba(217, 43, 43, .2) !important;
+            border-left: 2px solid rgba(200, 16, 46, .2) !important;
             margin-left: 1.4rem !important;
         }
 
@@ -288,7 +288,7 @@
 
         .first-level .sidebar-link:hover {
             color: var(--c-white) !important;
-            background: rgba(217, 43, 43, .08) !important;
+            background: rgba(200, 16, 46, .08) !important;
         }
 
         /* Arrow */
@@ -470,7 +470,7 @@
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background: rgba(217, 43, 43, .15) !important;
+            background: rgba(200, 16, 46, .15) !important;
             color: var(--c-white) !important;
             border-color: transparent !important;
             border-radius: 6px !important;
@@ -502,7 +502,7 @@
 
         .form-control:focus {
             border-color: var(--c-red) !important;
-            box-shadow: 0 0 0 3px rgba(217, 43, 43, .18) !important;
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, .18) !important;
             background: var(--c-surface2) !important;
             color: var(--c-white) !important;
             outline: none !important;
@@ -543,7 +543,7 @@
         .btn-primary:hover {
             background: var(--c-red-dk) !important;
             border-color: var(--c-red-dk) !important;
-            box-shadow: 0 4px 14px rgba(217, 43, 43, .4) !important;
+            box-shadow: 0 4px 14px rgba(200, 16, 46, .4) !important;
         }
 
         .btn-success {
@@ -619,8 +619,8 @@
         }
 
         .alert-danger {
-            background: rgba(217, 43, 43, .1) !important;
-            border-color: rgba(217, 43, 43, .3) !important;
+            background: rgba(200, 16, 46, .1) !important;
+            border-color: rgba(200, 16, 46, .3) !important;
             color: #F87171 !important;
         }
 
@@ -1175,7 +1175,7 @@
                 text: "{{ session('success') }}",
                 background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#1C2C40',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#D8E6F3',
-                confirmButtonColor: '#D92B2B'
+                confirmButtonColor: '#C8102E'
             });
         </script>
     @endif
@@ -1188,7 +1188,7 @@
                 text: "{{ session('error') }}",
                 background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#1C2C40',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#D8E6F3',
-                confirmButtonColor: '#D92B2B'
+                confirmButtonColor: '#C8102E'
             });
         </script>
     @endif
@@ -1212,7 +1212,7 @@
                 background: t.background,
                 color: t.color,
                 showCancelButton: true,
-                confirmButtonColor: '#D92B2B',
+                confirmButtonColor: '#C8102E',
                 cancelButtonColor: '#253447',
                 confirmButtonText: 'Ya, hapus!',
                 cancelButtonText: 'Batal'
@@ -1225,7 +1225,7 @@
                             icon: 'success',
                             background: t2.background,
                             color: t2.color,
-                            confirmButtonColor: '#D92B2B'
+                            confirmButtonColor: '#C8102E'
                         })
                         .then(() => {
                             form.submit();
@@ -1284,7 +1284,7 @@
                 $.each(res.notifikasis, function(i, n) {
                     var icons = { stok: '📦', pesanan: '🛒', retur: '🔄' };
                     var icon = icons[n.type] || '🔔';
-                    var bg = n.is_read ? 'transparent' : 'rgba(217,43,43,.07)';
+                    var bg = n.is_read ? 'transparent' : 'rgba(200,16,46,.07)';
                     html += '<a href="' + (n.url || 'javascript:void(0)') + '" class="notif-item" data-id="' + n.id + '" style="display:flex;gap:.7rem;padding:.65rem 1rem;text-decoration:none;color:var(--c-text);font-size:.8rem;font-family:var(--font-b);border-bottom:1px solid var(--c-border);transition:background .15s;background:' + bg + ';" onmouseover="this.style.background=\'rgba(255,255,255,.04)\'" onmouseout="this.style.background=\'' + bg + '\'">';
                     html += '<span style="font-size:1.1rem;flex-shrink:0;margin-top:2px;">' + icon + '</span>';
                     html += '<div style="flex:1;min-width:0;">';

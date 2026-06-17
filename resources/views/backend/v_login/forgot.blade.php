@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html dir="ltr">
+<html dir="ltr" data-theme="dark">
 <head>
+    <script>
+        (function() {
+            var theme = localStorage.getItem('backend_theme');
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,25 +20,102 @@
     <title>Lupa Password - MaztechGarage</title>
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <style>
-        body { background: #1a1a2e; }
-        .auth-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
-        .auth-box { width: 100%; max-width: 420px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); background: #1e2a3a !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; }
-        .auth-header { background: #000; padding: 24px 20px 16px; text-align: center; }
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --card-bg: #1e2a3a;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --header-bg: #000;
+            --text-primary: #fff;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --text-label: rgba(255, 255, 255, 0.7);
+            --input-bg: rgba(255, 255, 255, 0.05);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --input-text: #fff;
+            --input-placeholder: rgba(255, 255, 255, 0.3);
+            --input-focus-border: rgba(83, 52, 131, 0.8);
+            --input-focus-shadow: rgba(83, 52, 131, 0.2);
+            --footer-border: rgba(255, 255, 255, 0.06);
+            --footer-text: rgba(255, 255, 255, 0.3);
+            --toggle-bg: rgba(255, 255, 255, 0.1);
+            --toggle-border: rgba(255, 255, 255, 0.15);
+            --toggle-color: #fff;
+            --back-link: rgba(255, 255, 255, 0.5);
+            --back-link-hover: #fff;
+            --desc-text: rgba(255, 255, 255, 0.6);
+        }
+
+        [data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #f0f2f5 0%, #e2e6ea 50%, #f8f9fa 100%);
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --header-bg: #f8f9fa;
+            --text-primary: #1e293b;
+            --text-muted: #64748b;
+            --text-label: #475569;
+            --input-bg: #f1f5f9;
+            --input-border: #cbd5e1;
+            --input-text: #1e293b;
+            --input-placeholder: #94a3b8;
+            --input-focus-border: rgba(83, 52, 131, 0.6);
+            --input-focus-shadow: rgba(83, 52, 131, 0.15);
+            --footer-border: rgba(0, 0, 0, 0.06);
+            --footer-text: #94a3b8;
+            --toggle-bg: rgba(0, 0, 0, 0.08);
+            --toggle-border: rgba(0, 0, 0, 0.12);
+            --toggle-color: #1e293b;
+            --back-link: rgba(0, 0, 0, 0.4);
+            --back-link-hover: #1e293b;
+            --desc-text: rgba(0, 0, 0, 0.5);
+        }
+
+        body { background: var(--bg-gradient); }
+        .auth-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg-gradient); position: relative; }
+        .auth-box { width: 100%; max-width: 420px; border-radius: 12px; overflow: hidden; box-shadow: var(--card-shadow); background: var(--card-bg) !important; border: 1px solid var(--card-border) !important; }
+        .auth-header { background: var(--header-bg); padding: 24px 20px 16px; text-align: center; }
         .auth-header-img { width: 160px; height: 160px; object-fit: contain; object-position: center; display: block; margin: 0 auto; }
-        .auth-header h4 { color: #fff; margin: 10px 0 4px 0; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
-        .auth-header p { color: rgba(255, 255, 255, 0.5); font-size: 12px; margin: 0; letter-spacing: 1px; }
+        .auth-header h4 { color: var(--text-primary); margin: 10px 0 4px 0; font-size: 18px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .auth-header p { color: var(--text-muted); font-size: 12px; margin: 0; letter-spacing: 1px; }
         .auth-body { padding: 30px 25px; }
-        .form-label { color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-        .input-group-text { border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6); }
-        .form-control { background: rgba(255, 255, 255, 0.05) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; color: #fff !important; border-radius: 0 6px 6px 0; }
-        .form-control:focus { background: rgba(255, 255, 255, 0.08) !important; border-color: rgba(83, 52, 131, 0.8) !important; box-shadow: 0 0 0 3px rgba(83, 52, 131, 0.2) !important; }
-        .form-control::placeholder { color: rgba(255, 255, 255, 0.3); }
+        .form-label { color: var(--text-label); font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+        .input-group-text { border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-label); }
+        .form-control { background: var(--input-bg) !important; border: 1px solid var(--input-border) !important; color: var(--input-text) !important; border-radius: 0 6px 6px 0; }
+        .form-control:focus { background: var(--input-bg) !important; border-color: var(--input-focus-border) !important; box-shadow: 0 0 0 3px var(--input-focus-shadow) !important; }
+        .form-control::placeholder { color: var(--input-placeholder); }
         .btn-send { background: linear-gradient(135deg, #533483, #0f3460); border: none; color: #fff; padding: 10px 28px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
         .btn-send:hover { background: linear-gradient(135deg, #0f3460, #533483); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(83, 52, 131, 0.4); color: #fff; }
-        .auth-footer { padding: 16px 25px; border-top: 1px solid rgba(255, 255, 255, 0.06); text-align: center; }
-        .auth-footer span { color: rgba(255, 255, 255, 0.3); font-size: 12px; }
-        .back-link { color: rgba(255, 255, 255, 0.5); font-size: 13px; text-decoration: none; }
-        .back-link:hover { color: #fff; }
+        .auth-footer { padding: 16px 25px; border-top: 1px solid var(--footer-border); text-align: center; }
+        .auth-footer span { color: var(--footer-text); font-size: 12px; }
+        .back-link { color: var(--back-link); font-size: 13px; text-decoration: none; }
+        .back-link:hover { color: var(--back-link-hover); }
+        .desc-text { color: var(--desc-text); font-size: 13px; margin-bottom: 20px; }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            color: var(--toggle-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(6px);
+        }
+        .theme-toggle:hover { transform: scale(1.1); background: var(--toggle-bg); }
+        .theme-toggle svg { transition: transform 0.3s ease; }
+        .theme-toggle:hover svg { transform: rotate(15deg); }
+        .theme-toggle .icon-sun { display: block; }
+        .theme-toggle .icon-moon { display: none; }
+        [data-theme="light"] .theme-toggle .icon-sun { display: none; }
+        [data-theme="light"] .theme-toggle .icon-moon { display: block; }
     </style>
 </head>
 <body>
@@ -41,6 +128,17 @@
         </div>
 
         <div class="auth-wrapper">
+
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti tema">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+
             <div class="auth-box">
                 <div class="auth-header">
                     <img src="{{ asset('backend/images/logo.jpeg') }}" alt="logo" class="auth-header-img">
@@ -67,7 +165,7 @@
                         </div>
                     @endif
 
-                    <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 20px;">
+                    <p class="desc-text">
                         Masukkan email admin Anda untuk mendapatkan tautan reset password.
                     </p>
 
@@ -110,6 +208,16 @@
     <script src="{{ asset('backend/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('backend/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script>$(".preloader").fadeOut();</script>
+    <script>
+        $(".preloader").fadeOut();
+
+        $('#themeToggle').on('click', function() {
+            var html = document.documentElement;
+            var current = html.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('backend_theme', next);
+        });
+    </script>
 </body>
 </html>
