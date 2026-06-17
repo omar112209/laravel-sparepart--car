@@ -21,47 +21,47 @@
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #FDF5F5 0%, #FFE8E8 50%, #FFF0F0 100%);
+            --bg-gradient: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #F1F5F9 100%);
             --card-bg: #ffffff;
             --card-border: rgba(0, 0, 0, 0.08);
             --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            --header-bg: #f8f9fa;
-            --text-primary: #2D1B1B;
-            --text-muted: #9A7A7A;
-            --text-label: #5C3A3A;
-            --input-bg: #FFF5F5;
-            --input-border: #E8D0D0;
-            --input-text: #2D1B1B;
-            --input-placeholder: #C0A0A0;
-            --input-focus-border: rgba(200, 16, 46, 0.6);
-            --input-focus-shadow: rgba(200, 16, 46, 0.15);
+            --header-bg: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-muted: #64748B;
+            --text-label: #475569;
+            --input-bg: #F1F5F9;
+            --input-border: #CBD5E1;
+            --input-text: #0F172A;
+            --input-placeholder: #94A3B8;
+            --input-focus-border: rgba(239, 68, 68, 0.6);
+            --input-focus-shadow: rgba(239, 68, 68, 0.15);
             --footer-border: rgba(0, 0, 0, 0.06);
-            --footer-text: #B09090;
+            --footer-text: #94A3B8;
             --toggle-bg: rgba(0, 0, 0, 0.06);
             --toggle-border: rgba(0, 0, 0, 0.1);
-            --toggle-color: #2D1B1B;
+            --toggle-color: #0F172A;
             --back-link: rgba(0, 0, 0, 0.4);
-            --back-link-hover: #2D1B1B;
+            --back-link-hover: #0F172A;
             --desc-text: rgba(0, 0, 0, 0.5);
         }
 
         [data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #100808 0%, #1C0E0E 50%, #2A1515 100%);
-            --card-bg: #1C0E0E;
+            --bg-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            --card-bg: #1E293B;
             --card-border: rgba(255, 255, 255, 0.08);
             --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            --header-bg: #000;
-            --text-primary: #fff;
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --text-label: rgba(255, 255, 255, 0.7);
-            --input-bg: rgba(255, 255, 255, 0.06);
-            --input-border: rgba(255, 255, 255, 0.12);
-            --input-text: #fff;
-            --input-placeholder: rgba(255, 255, 255, 0.3);
-            --input-focus-border: rgba(200, 16, 46, 0.8);
-            --input-focus-shadow: rgba(200, 16, 46, 0.2);
+            --header-bg: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-muted: #94A3B8;
+            --text-label: #CBD5E1;
+            --input-bg: #334155;
+            --input-border: #475569;
+            --input-text: #F1F5F9;
+            --input-placeholder: #64748B;
+            --input-focus-border: rgba(239, 68, 68, 0.8);
+            --input-focus-shadow: rgba(239, 68, 68, 0.2);
             --footer-border: rgba(255, 255, 255, 0.06);
-            --footer-text: rgba(255, 255, 255, 0.3);
+            --footer-text: #64748B;
             --toggle-bg: rgba(255, 255, 255, 0.1);
             --toggle-border: rgba(255, 255, 255, 0.15);
             --toggle-color: #fff;
@@ -83,8 +83,8 @@
         .form-control { background: var(--input-bg) !important; border: 1px solid var(--input-border) !important; color: var(--input-text) !important; border-radius: 0 6px 6px 0; }
         .form-control:focus { background: var(--input-bg) !important; border-color: var(--input-focus-border) !important; box-shadow: 0 0 0 3px var(--input-focus-shadow) !important; }
         .form-control::placeholder { color: var(--input-placeholder); }
-        .btn-send { background: linear-gradient(135deg, #C8102E, #9A0C23); border: none; color: #fff; padding: 10px 28px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
-        .btn-send:hover { background: linear-gradient(135deg, #9A0C23, #C8102E); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(200, 16, 46, 0.4); color: #fff; }
+        .btn-send { background: linear-gradient(135deg, #EF4444, #DC2626); border: none; color: #fff; padding: 10px 28px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
+        .btn-send:hover { background: linear-gradient(135deg, #DC2626, #EF4444); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); color: #fff; }
         .auth-footer { padding: 16px 25px; border-top: 1px solid var(--footer-border); text-align: center; }
         .auth-footer span { color: var(--footer-text); font-size: 12px; }
         .back-link { color: var(--back-link); font-size: 13px; text-decoration: none; }

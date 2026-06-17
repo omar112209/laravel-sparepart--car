@@ -22,8 +22,8 @@
         }
 
         :root {
-            --red: #C8102E;
-            --red-dark: #9A0C23;
+            --red: #EF4444;
+            --red-dark: #DC2626;
             --dark: #0C0C0E;
             --dark2: #131316;
             --dark3: #1C1C21;
@@ -586,7 +586,7 @@
         }
 
         .print-btn:hover {
-            background: var(--red-dark, #9A0C23);
+            background: var(--red-dark, #DC2626);
         }
 
         /* ── PRINT MEDIA ── */
@@ -610,7 +610,7 @@
 
             .inv-header {
                 background: #f4f4f4 !important;
-                border-bottom: 3px solid #C8102E !important;
+                border-bottom: 3px solid #EF4444 !important;
             }
 
             .inv-header::before {
@@ -622,7 +622,7 @@
             }
 
             .inv-logo-name span {
-                color: #C8102E !important;
+                color: #EF4444 !important;
             }
 
             .inv-logo-sub,
@@ -650,7 +650,7 @@
             .inv-block-label,
             .inv-ship-item-label,
             .inv-table-label {
-                color: #C8102E !important;
+                color: #EF4444 !important;
             }
 
             .inv-table thead tr {
@@ -666,7 +666,7 @@
             }
 
             .totals-row.grand .totals-val {
-                color: #C8102E !important;
+                color: #EF4444 !important;
             }
 
             .inv-shipping {
@@ -680,7 +680,7 @@
             }
 
             .inv-footer-thanks-brand span {
-                color: #C8102E !important;
+                color: #EF4444 !important;
             }
 
             .resi-pill {

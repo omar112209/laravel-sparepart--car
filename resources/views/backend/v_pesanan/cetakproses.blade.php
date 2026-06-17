@@ -59,7 +59,7 @@
 
         h2+h4+h4 {
             background: #1a1a1a;
-            border-bottom: 4px solid #C8102E;
+            border-bottom: 4px solid #EF4444;
             color: #777;
             padding: 4px 20px 14px;
             font-size: 12px;
@@ -110,7 +110,7 @@
 
         /* ID Order merah */
         tbody td:nth-child(2) {
-            color: #C8102E;
+            color: #EF4444;
             font-weight: bold;
             text-align: center;
         }
@@ -156,12 +156,12 @@
         }
 
         .print-btn button:first-child {
-            background: #C8102E;
+            background: #EF4444;
             color: #fff;
         }
 
         .print-btn button:first-child:hover {
-            background: #9A0C23;
+            background: #DC2626;
         }
 
         .print-btn button:last-child {
@@ -256,7 +256,7 @@
                     <td class="text-center">{{ $row->status }}</td>
                     <td class="text-center">
                         @if ($row->status == 'unpaid')
-                            <span style="color:#C8102E;font-weight:bold;">Belum Dibayar</span>
+                            <span style="color:#EF4444;font-weight:bold;">Belum Dibayar</span>
                         @else
                             <span style="color:#28a745;font-weight:bold;">Lunas</span>
                         @endif

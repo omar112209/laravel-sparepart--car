@@ -36,12 +36,12 @@
         }
 
         .print-btn button:first-child {
-            background: #C8102E;
+            background: #EF4444;
             color: #fff;
         }
 
         .print-btn button:first-child:hover {
-            background: #9A0C23;
+            background: #DC2626;
         }
 
         .print-btn button:last-child {
@@ -62,7 +62,7 @@
         /* --- Header (h2 + h4) --- */
         .wrapper h2 {
             background: #1a1a1a;
-            border-bottom: 4px solid #C8102E;
+            border-bottom: 4px solid #EF4444;
             color: #fff;
             text-align: center;
             padding: 18px 20px 10px;
@@ -149,7 +149,7 @@
 
         /* ID Order */
         tbody td:nth-child(2) {
-            color: #C8102E;
+            color: #EF4444;
             font-weight: bold;
             text-align: center;
         }
@@ -157,14 +157,14 @@
         /* Total row */
         tfoot tr td {
             background: #f8f8f8;
-            border-top: 2px solid #C8102E;
+            border-top: 2px solid #EF4444;
             font-weight: bold;
             padding: 10px;
             border-bottom: none;
         }
 
         tfoot tr td:last-child {
-            color: #C8102E;
+            color: #EF4444;
             font-size: 15px;
             font-weight: 900;
             text-align: right;
