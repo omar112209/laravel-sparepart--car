@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en" data-theme="dark">
+<html dir="ltr" lang="en" data-theme="light">
 <head>
     <script>
         (function() {
             var theme = localStorage.getItem('backend_theme');
-            if (theme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
+            if (theme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
     </script>
@@ -37,19 +37,19 @@
        CSS TOKENS
     ════════════════════════════════════════ */
         :root {
-            --c-bg: #100808;
-            --c-surface: #1C0E0E;
-            --c-surface2: #2A1616;
-            --c-border: rgba(255, 255, 255, .08);
+            --c-bg: #FDF5F5;
+            --c-surface: #FFFFFF;
+            --c-surface2: #FFF0F0;
+            --c-border: rgba(0, 0, 0, .1);
             --c-red: #C8102E;
             --c-red-dk: #9A0C23;
             --c-orange: #D97706;
             --c-yellow: #F5C518;
             --c-green: #27AE60;
             --c-blue: #2E86DE;
-            --c-text: #F0E8E8;
-            --c-muted: #A07070;
-            --c-white: #FFFFFF;
+            --c-text: #2D1B1B;
+            --c-muted: #9A7A7A;
+            --c-white: #1A0808;
             --font-d: 'Barlow Condensed', sans-serif;
             --font-b: 'Outfit', sans-serif;
             --topbar-h: 64px;
@@ -57,14 +57,14 @@
             --radius: 10px;
         }
 
-        [data-theme="light"] {
-            --c-bg: #FDF5F5;
-            --c-surface: #FFFFFF;
-            --c-surface2: #FFF0F0;
-            --c-border: rgba(0, 0, 0, .1);
-            --c-text: #2D1B1B;
-            --c-muted: #9A7A7A;
-            --c-white: #1A0808;
+        [data-theme="dark"] {
+            --c-bg: #100808;
+            --c-surface: #1C0E0E;
+            --c-surface2: #2A1616;
+            --c-border: rgba(255, 255, 255, .08);
+            --c-text: #F0E8E8;
+            --c-muted: #A07070;
+            --c-white: #FFFFFF;
         }
 
         *,

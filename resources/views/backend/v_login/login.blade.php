@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html dir="ltr" data-theme="dark">
+<html dir="ltr" data-theme="light">
 <head>
     <script>
         (function() {
             var theme = localStorage.getItem('backend_theme');
-            if (theme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
+            if (theme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
             }
         })();
     </script>
@@ -21,6 +21,37 @@
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <style>
         :root {
+            --bg-gradient: linear-gradient(135deg, #FDF5F5 0%, #FFE8E8 50%, #FFF0F0 100%);
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.08);
+            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --header-bg: #f8f9fa;
+            --text-primary: #2D1B1B;
+            --text-muted: #9A7A7A;
+            --text-label: #5C3A3A;
+            --input-bg: #FFF5F5;
+            --input-border: #E8D0D0;
+            --input-text: #2D1B1B;
+            --input-placeholder: #C0A0A0;
+            --input-focus-border: rgba(200, 16, 46, 0.6);
+            --input-focus-shadow: rgba(200, 16, 46, 0.15);
+            --footer-border: rgba(0, 0, 0, 0.06);
+            --footer-text: #B09090;
+            --divider-color: rgba(0, 0, 0, 0.2);
+            --divider-line: rgba(0, 0, 0, 0.08);
+            --btn-recover-border: rgba(0, 0, 0, 0.12);
+            --btn-recover-text: rgba(0, 0, 0, 0.4);
+            --btn-recover-hover-border: rgba(0, 0, 0, 0.25);
+            --btn-recover-hover-text: #2D1B1B;
+            --toggle-bg: rgba(0, 0, 0, 0.06);
+            --toggle-border: rgba(0, 0, 0, 0.1);
+            --toggle-color: #2D1B1B;
+            --back-link: rgba(0, 0, 0, 0.4);
+            --back-link-hover: #2D1B1B;
+            --recover-text: rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #100808 0%, #1C0E0E 50%, #2A1515 100%);
             --card-bg: #1C0E0E;
             --card-border: rgba(255, 255, 255, 0.08);
@@ -29,8 +60,8 @@
             --text-primary: #fff;
             --text-muted: rgba(255, 255, 255, 0.5);
             --text-label: rgba(255, 255, 255, 0.7);
-            --input-bg: rgba(255, 255, 255, 0.05);
-            --input-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.06);
+            --input-border: rgba(255, 255, 255, 0.12);
             --input-text: #fff;
             --input-placeholder: rgba(255, 255, 255, 0.3);
             --input-focus-border: rgba(200, 16, 46, 0.8);
@@ -49,37 +80,6 @@
             --back-link: rgba(255, 255, 255, 0.5);
             --back-link-hover: #fff;
             --recover-text: rgba(255, 255, 255, 0.6);
-        }
-
-        [data-theme="light"] {
-            --bg-gradient: linear-gradient(135deg, #f0f2f5 0%, #e2e6ea 50%, #f8f9fa 100%);
-            --card-bg: #ffffff;
-            --card-border: rgba(0, 0, 0, 0.08);
-            --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            --header-bg: #f8f9fa;
-            --text-primary: #1e293b;
-            --text-muted: #64748b;
-            --text-label: #475569;
-            --input-bg: #f1f5f9;
-            --input-border: #cbd5e1;
-            --input-text: #1e293b;
-            --input-placeholder: #94a3b8;
-            --input-focus-border: rgba(200, 16, 46, 0.6);
-            --input-focus-shadow: rgba(200, 16, 46, 0.15);
-            --footer-border: rgba(0, 0, 0, 0.06);
-            --footer-text: #94a3b8;
-            --divider-color: rgba(0, 0, 0, 0.3);
-            --divider-line: rgba(0, 0, 0, 0.1);
-            --btn-recover-border: rgba(0, 0, 0, 0.15);
-            --btn-recover-text: rgba(0, 0, 0, 0.4);
-            --btn-recover-hover-border: rgba(0, 0, 0, 0.3);
-            --btn-recover-hover-text: rgba(0, 0, 0, 0.7);
-            --toggle-bg: rgba(0, 0, 0, 0.08);
-            --toggle-border: rgba(0, 0, 0, 0.12);
-            --toggle-color: #1e293b;
-            --back-link: rgba(0, 0, 0, 0.4);
-            --back-link-hover: #1e293b;
-            --recover-text: rgba(0, 0, 0, 0.5);
         }
 
         body {
