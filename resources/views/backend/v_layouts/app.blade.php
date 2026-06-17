@@ -41,6 +41,7 @@
             --c-surface: #FFFFFF;
             --c-surface2: #FFF0F0;
             --c-border: rgba(0, 0, 0, .1);
+            --c-nav: #E0ECF8;
             --c-red: #C8102E;
             --c-red-dk: #9A0C23;
             --c-orange: #D97706;
@@ -61,6 +62,7 @@
             --c-bg: #100808;
             --c-surface: #1C0E0E;
             --c-surface2: #2A1616;
+            --c-nav: #2A1515;
             --c-border: rgba(255, 255, 255, .08);
             --c-text: #F0E8E8;
             --c-muted: #A07070;
@@ -94,7 +96,7 @@
         .topbar,
         .topbar[data-navbarbg="skin5"],
         .topbar[data-navbarbg="skin5"] .top-navbar {
-            background: var(--c-surface) !important;
+            background: var(--c-nav) !important;
             border-bottom: 2px solid var(--c-red) !important;
             box-shadow: 0 2px 24px rgba(0, 0, 0, .5) !important;
         }
@@ -106,7 +108,7 @@
 
         /* Logo header cell */
         .navbar-header[data-logobg="skin5"] {
-            background: var(--c-surface) !important;
+            background: var(--c-nav) !important;
             border-right: 1px solid var(--c-border) !important;
             width: var(--sidebar-w) !important;
             display: flex !important;
