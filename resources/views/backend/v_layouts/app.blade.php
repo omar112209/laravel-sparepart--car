@@ -1173,7 +1173,7 @@
                 icon: 'success',
                 title: 'Berhasil!',
                 text: "{{ session('success') }}",
-                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#1C2C40',
+                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#2A1616',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#D8E6F3',
                 confirmButtonColor: '#C8102E'
             });
@@ -1186,7 +1186,7 @@
                 icon: 'error',
                 title: 'Gagal!',
                 text: "{{ session('error') }}",
-                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#1C2C40',
+                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#2A1616',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#D8E6F3',
                 confirmButtonColor: '#C8102E'
             });
@@ -1196,7 +1196,7 @@
     <script>
         function swalTheme() {
             return {
-                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#1C2C40',
+                background: getComputedStyle(document.documentElement).getPropertyValue('--c-surface').trim() || '#2A1616',
                 color: getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#D8E6F3',
             };
         }

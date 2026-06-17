@@ -21,8 +21,8 @@
     <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            --card-bg: #1e2a3a;
+            --bg-gradient: linear-gradient(135deg, #100808 0%, #1C0E0E 50%, #2A1515 100%);
+            --card-bg: #1C0E0E;
             --card-border: rgba(255, 255, 255, 0.08);
             --card-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             --header-bg: #000;
@@ -33,8 +33,8 @@
             --input-border: rgba(255, 255, 255, 0.1);
             --input-text: #fff;
             --input-placeholder: rgba(255, 255, 255, 0.3);
-            --input-focus-border: rgba(83, 52, 131, 0.8);
-            --input-focus-shadow: rgba(83, 52, 131, 0.2);
+            --input-focus-border: rgba(200, 16, 46, 0.8);
+            --input-focus-shadow: rgba(200, 16, 46, 0.2);
             --footer-border: rgba(255, 255, 255, 0.06);
             --footer-text: rgba(255, 255, 255, 0.3);
             --toggle-bg: rgba(255, 255, 255, 0.1);
@@ -58,8 +58,8 @@
             --input-border: #cbd5e1;
             --input-text: #1e293b;
             --input-placeholder: #94a3b8;
-            --input-focus-border: rgba(83, 52, 131, 0.6);
-            --input-focus-shadow: rgba(83, 52, 131, 0.15);
+            --input-focus-border: rgba(200, 16, 46, 0.6);
+            --input-focus-shadow: rgba(200, 16, 46, 0.15);
             --footer-border: rgba(0, 0, 0, 0.06);
             --footer-text: #94a3b8;
             --toggle-bg: rgba(0, 0, 0, 0.08);
@@ -83,8 +83,8 @@
         .form-control { background: var(--input-bg) !important; border: 1px solid var(--input-border) !important; color: var(--input-text) !important; border-radius: 0 6px 6px 0; }
         .form-control:focus { background: var(--input-bg) !important; border-color: var(--input-focus-border) !important; box-shadow: 0 0 0 3px var(--input-focus-shadow) !important; }
         .form-control::placeholder { color: var(--input-placeholder); }
-        .btn-send { background: linear-gradient(135deg, #533483, #0f3460); border: none; color: #fff; padding: 10px 28px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
-        .btn-send:hover { background: linear-gradient(135deg, #0f3460, #533483); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(83, 52, 131, 0.4); color: #fff; }
+        .btn-send { background: linear-gradient(135deg, #C8102E, #9A0C23); border: none; color: #fff; padding: 10px 28px; border-radius: 6px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s ease; width: 100%; margin-top: 10px; }
+        .btn-send:hover { background: linear-gradient(135deg, #9A0C23, #C8102E); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(200, 16, 46, 0.4); color: #fff; }
         .auth-footer { padding: 16px 25px; border-top: 1px solid var(--footer-border); text-align: center; }
         .auth-footer span { color: var(--footer-text); font-size: 12px; }
         .back-link { color: var(--back-link); font-size: 13px; text-decoration: none; }
