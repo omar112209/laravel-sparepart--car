@@ -22,24 +22,24 @@
         }
 
         :root {
-            --red: #EF4444;
-            --red-dark: #DC2626;
-            --dark: #0C0C0E;
-            --dark2: #131316;
-            --dark3: #1C1C21;
-            --steel: #2A2A30;
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #EDEAE4;
-            --text2: #9E9B95;
-            --text3: #5A5855;
-            --accent: #E8B84B;
+            --red: #c8102e;
+            --red-dark: #a00d25;
+            --dark: #f5f5f0;
+            --dark2: #ffffff;
+            --dark3: #fafaf7;
+            --steel: #eeeeea;
+            --border: rgba(0, 0, 0, 0.08);
+            --text: #1e1e1e;
+            --text2: #555555;
+            --text3: #888888;
+            --accent: #c8102e;
             --font-disp: 'Barlow Condensed', sans-serif;
             --font-body: 'Barlow', sans-serif;
             --font-mono: 'Roboto Mono', monospace;
         }
 
         body {
-            background: var(--dark);
+            background: #e8e8e3;
             color: var(--text);
             font-family: var(--font-body);
             font-size: 13px;
@@ -56,10 +56,10 @@
             width: 100%;
             max-width: 820px;
             background: var(--dark2);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
         }
 
         /* ── HEADER BAND ── */
@@ -84,7 +84,7 @@
             font-family: var(--font-disp);
             font-size: 120px;
             font-weight: 800;
-            color: rgba(255, 255, 255, 0.02);
+            color: rgba(0, 0, 0, 0.03);
             letter-spacing: 8px;
             pointer-events: none;
             user-select: none;
@@ -313,7 +313,7 @@
         }
 
         .inv-table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(0, 0, 0, 0.02);
         }
 
         .inv-table tbody td {
@@ -347,8 +347,7 @@
             border-radius: 6px;
             object-fit: cover;
             border: 1px solid var(--border);
-            background: var(--dark3);
-            filter: saturate(0.8);
+            background: #f0f0eb;
         }
 
         .item-name {
@@ -365,7 +364,7 @@
         }
 
         .item-qty {
-            background: var(--dark3);
+            background: #f0f0eb;
             border: 1px solid var(--border);
             border-radius: 4px;
             padding: 3px 10px;
@@ -436,7 +435,7 @@
 
         /* ── SHIPPING INFO ── */
         .inv-shipping {
-            background: var(--dark3);
+            background: #fafaf7;
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 20px 24px;
@@ -476,19 +475,19 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(200, 16, 46, 0.1);
+            background: #fef2f2;
             border: 1px solid rgba(200, 16, 46, 0.3);
             border-radius: 4px;
             padding: 4px 10px;
             font-family: var(--font-mono);
             font-size: 11px;
-            color: var(--text2);
+            color: var(--red);
             margin-top: 4px;
         }
 
         /* ── FOOTER BAND ── */
         .inv-footer {
-            background: var(--dark3);
+            background: #fafaf7;
             border-top: 1px solid var(--border);
             padding: 24px 40px;
             display: flex;
@@ -547,8 +546,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
+            border: 1px solid var(--border);
             color: var(--text2);
             padding: 9px 18px;
             border-radius: 6px;
@@ -876,7 +875,7 @@
                     </div>
                 </div>
             @else
-                <div style="background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:32px;text-align:center;">
+                <div style="background:#fafaf7;border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin-bottom:32px;text-align:center;">
                     <small style="color:var(--text3);">Data pengiriman belum diisi.</small>
                 </div>
             @endif
